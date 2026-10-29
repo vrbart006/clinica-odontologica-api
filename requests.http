@@ -1,0 +1,54 @@
+### Extensão "REST Client" do VS Code, ou copie para o Postman/Insomnia
+
+### 1. Cadastro de paciente (esperado: 201)
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{ "nome": "Maria Silva", "email": "maria@email.com", "telefone": "19999998888", "senha": "senha1234" }
+
+### 2. Cadastro com senha fraca (esperado: 400)
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{ "nome": "Maria Silva", "email": "maria2@email.com", "senha": "123" }
+
+### 3. Login (esperado: 200 + token)
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{ "email": "maria@email.com", "senha": "senha1234" }
+
+### 4. Agendar SEM token (esperado: 401)
+POST http://localhost:3000/consultas
+Content-Type: application/json
+
+{ "procedimento": "limpeza", "dentista": "Dr. Carlos", "data": "2026-12-10T14:00" }
+
+### 5. Agendar COM token (cole o token do passo 3) (esperado: 201)
+POST http://localhost:3000/consultas
+Content-Type: application/json
+Authorization: Bearer COLE_O_TOKEN_AQUI
+
+{ "procedimento": "limpeza", "dentista": "Dr. Carlos", "data": "2026-12-10T14:00", "observacoes": "Sensibilidade ao frio" }
+
+### 6. Mesmo dentista, mesmo horário (esperado: 409)
+POST http://localhost:3000/consultas
+Content-Type: application/json
+Authorization: Bearer COLE_O_TOKEN_AQUI
+
+{ "procedimento": "avaliacao", "dentista": "Dr. Carlos", "data": "2026-12-10T14:00" }
+
+### 7. Fora do horário de atendimento, domingo ou 22h (esperado: 400)
+POST http://localhost:3000/consultas
+Content-Type: application/json
+Authorization: Bearer COLE_O_TOKEN_AQUI
+
+{ "procedimento": "limpeza", "dentista": "Dr. Carlos", "data": "2026-12-13T22:00" }
+
+### 8. Listar minhas consultas (esperado: 200)
+GET http://localhost:3000/consultas
+Authorization: Bearer COLE_O_TOKEN_AQUI
+
+### 9. Cancelar consulta de id 1 (esperado: 200)
+PATCH http://localhost:3000/consultas/1/cancelar
+Authorization: Bearer COLE_O_TOKEN_AQUI

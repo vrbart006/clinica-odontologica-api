@@ -1,0 +1,27 @@
+{
+  "name": "clinica-odontologica-api",
+  "version": "1.0.0",
+  "description": "API REST de agendamento de consultas para clínica odontológica (Node.js, Express, Sequelize, MySQL, JWT, bcrypt, express-validator)",
+  "main": "server.js",
+"scripts": {
+  "start": "node server.js",
+  "dev": "nodemon server.js"
+},
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.3",
+    "express-validator": "^7.3.2",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.24.6",
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "commonjs"
+}
