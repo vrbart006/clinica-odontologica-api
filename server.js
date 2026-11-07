@@ -7,8 +7,11 @@ require('./models/associations');
 
 const AuthRoutes = require('./routes/AuthRoutes');
 const AppointmentRoutes = require('./routes/AppointmentRoutes');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 
 app.use(express.json());
 
